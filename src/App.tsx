@@ -1,25 +1,30 @@
 import { Router } from "@reach/router";
-import React from "react";
-import { render } from "react-dom";
-import { FirebaseAppProvider } from "reactfire";
-import "firebase/auth";
-import { firebaseConfig } from "./firebase.config";
+import React, { useContext, useEffect } from "react";
 import Home from "./Home";
 import Login from "./Login";
-import "bulma/css/bulma.min.css";
-import "./global.css";
+import TokenContext from "./TokenContext";
+import { useUser } from "reactfire";
+import Users from "./Users";
 
 const App: React.FC = () => {
+  const [token, setToken] = useContext(TokenContext);
+  const { data: user } = useUser();
+
+  useEffect(() => {
+    if (!token && user) user.getIdToken(true).then(setToken);
+    else if (token && !user) setToken("");
+  }, [user, token, setToken]);
+
   return (
-    <React.StrictMode>
-      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-        <Router>
-          <Home path="/" />
-          <Login path="/login" />
-        </Router>
-      </FirebaseAppProvider>
-    </React.StrictMode>
+    <>
+      <div className="content"><p>Token: {token}</p></div>
+      <Router>
+        <Home path="/" />
+        <Login path="/login" />
+        <Users path="/users" />
+      </Router>
+    </>
   );
 };
 
-render(<App />, document.getElementById("root"));
+export default App;

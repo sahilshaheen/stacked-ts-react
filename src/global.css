@@ -1,7 +1,20 @@
 body {
-    margin: 1rem;
+  margin: 1rem;
 }
 
 .w-sm {
-    width: 480px;
+  width: 360px;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.is-size-2 {
+  margin-top: .5714em !important;
 }

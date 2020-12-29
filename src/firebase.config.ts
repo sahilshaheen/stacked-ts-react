@@ -1,5 +1,7 @@
-export const firebaseConfig = {
+const firebaseConfig = {
   /*
-    Put your config params here
+    REPLACE WITH PROJECT CONFIG OBJECT
   */
 };
+
+export default firebaseConfig;
