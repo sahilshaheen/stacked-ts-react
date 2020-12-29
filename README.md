@@ -5,7 +5,7 @@
 #### GraphQL authorization
 
 Since token is set a render after login, token is not always sent with the GraphQL request.
-Edit: Not really an issue because the request is sent after token is obtained
+Edit: Not really an issue because the request is resent after token is obtained
 
 #### Login
 
